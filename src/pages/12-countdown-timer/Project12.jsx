@@ -3,10 +3,15 @@ import gift from '../../images/gift.jpeg'
 import { months, weekdays } from './constants'
 import DeadlineItems from './components/deadlineItems'
 
-const futureDate = new Date(new Date().getTime() + 10 * 1000)
-const futureTime = futureDate.getTime()
+import { useLoaderData } from 'react-router-dom'
+
+// const futureDate = new Date(new Date().getTime() + 10 * 1000)
+// const futureTime = futureDate.getTime()
 
 export default function Project12 () {
+  const futureDate = useLoaderData()
+  const futureTime = futureDate.getTime()
+
   const [remainedTime, setRemainedTime] = React.useState(
     futureTime - new Date().getTime()
   )
@@ -24,7 +29,7 @@ export default function Project12 () {
   }, [remainedTime])
 
   return (
-    <div className='App'>
+    <div className='root-layout--main__div'>
       <section className='section-center'>
         <article className='gift-img'>
           <img src={gift} alt='gift' />
@@ -37,7 +42,7 @@ export default function Project12 () {
             giveaway ends on {weekdays[futureDate.getDay()]},{' '}
             {futureDate.getDate()} {months[futureDate.getMonth()]}{' '}
             {futureDate.getFullYear()} {futureDate.getHours()}:
-            {futureDate.getMinutes()}am
+            {futureDate.getMinutes()} am
           </h4>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -57,4 +62,9 @@ export default function Project12 () {
       </section>
     </div>
   )
+}
+
+// data loader
+export const countdownTimerLoader = () => {
+  return new Date(new Date().getTime() + 10 * 1000)
 }

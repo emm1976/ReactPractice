@@ -43,15 +43,17 @@ export default function Project08 () {
   }
 
   return (
-    <section className='menu--container'>
-      <div className='title'>
-        <h2>our menu</h2>
-        <div className='underline'></div>
-      </div>
+    <div className='root-layout--main__div'>
+      <section className='menu--container'>
+        <div className='title'>
+          <h2>our menu</h2>
+          <div className='underline'></div>
+        </div>
 
-      <div className='menu--btn-container'>{displayMenuButtons()}</div>
+        <div className='btn-container'>{displayMenuButtons()}</div>
 
-      <div className='menu--section-center'>{diplayMenuItems(menuItems)}</div>
-    </section>
+        <div className='section-center'>{diplayMenuItems(menuItems)}</div>
+      </section>
+    </div>
   )
 }

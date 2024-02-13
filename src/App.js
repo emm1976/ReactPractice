@@ -25,7 +25,7 @@ import Project08 from './pages/08-menu/Project08'
 import Project09 from './pages/09-video/Project09'
 // import Project10 from './pages/10-scroll/Project10'
 import Project11 from './pages/11-tabs/Project11'
-import Project12 from './pages/12-countdown-timer/Project12'
+import Project12, { countdownTimerLoader } from './pages/12-countdown-timer/Project12'
 import Project13 from './pages/13-lorem-ipsum/Project13'
 import Project14 from './pages/14-grocery-bud/Project14'
 import Project15 from './pages/15-slider/Project15'
@@ -52,7 +52,7 @@ const router = createBrowserRouter(
       <Route path='Project09' element={<Project09 />} />
       {/* <Route path='Project10' element={<Project10 />} /> */}
       <Route path='Project11' element={<Project11 />} />
-      <Route path='Project12' element={<Project12 />} />
+      <Route path='Project12' element={<Project12 />} loader={countdownTimerLoader} />
       <Route path='Project13' element={<Project13 />} />
       <Route path='Project14' element={<Project14 />} />
       <Route path='Project15' element={<Project15 />} />

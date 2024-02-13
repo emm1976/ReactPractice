@@ -28,21 +28,23 @@ export default function Project13 () {
   }
 
   return (
-    <section className='lorem-ipsum--container'>
-      <h3>tired of boring lorem ipsum?</h3>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='amount'>paragraphs:</label>
-        <input
-          type='number'
-          name='amount'
-          id='amount'
-          placeholder='0'
-          value={amount}
-          onChange={e => setAmount(e.target.value)}
-        />
-        <button type='submit'>generate</button>
-      </form>
-      {loremText && <article>{loremText}</article>}
-    </section>
+    <div className='root-layout--main__div'>
+      <section className='lorem-ipsum--container'>
+        <h3>tired of boring lorem ipsum?</h3>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor='amount'>paragraphs:</label>
+          <input
+            type='number'
+            name='amount'
+            id='amount'
+            placeholder='0'
+            value={amount}
+            onChange={e => setAmount(e.target.value)}
+          />
+          <button type='submit'>generate</button>
+        </form>
+        {loremText && <article>{loremText}</article>}
+      </section>
+    </div>
   )
 }

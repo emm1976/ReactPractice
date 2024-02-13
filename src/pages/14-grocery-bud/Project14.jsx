@@ -4,7 +4,6 @@ import GroceryItem from './components/GroceryItem'
 const LS_ITEM_NAME = 'list'
 
 export default function Project14 () {
-
   const [groceryItems, setGroceryItems] = React.useState([])
 
   const [editFlag, setEditFlag] = React.useState(false)
@@ -104,35 +103,37 @@ export default function Project14 () {
   }, [])
 
   return (
-    <section className='grocery-bud--container'>
-      <form onSubmit={addItem}>
-        <p className={`alert ${alert.className}`}>{alert.text}</p>
-        <h3>grocery bud</h3>
+    <div className='root-layout--main__div'>
+      <section className='grocery-bud--container'>
+        <form onSubmit={addItem}>
+          <p className={`alert ${alert.className}`}>{alert.text}</p>
+          <h3>grocery bud</h3>
 
-        <div className='form-control'>
-          <input
-            type='text'
-            placeholder='e.g. eggs'
-            value={inputValue}
-            onChange={e => setInputValue(e.target.value)}
-            ref={refGrocery}
-          />
-          <button type='submit' className='submit-btn'>
-            {editFlag ? 'edit' : 'submit'}
+          <div className='form-control'>
+            <input
+              type='text'
+              placeholder='e.g. eggs'
+              value={inputValue}
+              onChange={e => setInputValue(e.target.value)}
+              ref={refGrocery}
+            />
+            <button type='submit' className='submit-btn'>
+              {editFlag ? 'edit' : 'submit'}
+            </button>
+          </div>
+        </form>
+
+        <div
+          className={`grocery-container ${
+            groceryItems === '' ? '' : ' show-container'
+          }`}
+        >
+          <div className='grocery-list'>{diplayItems()}</div>
+          <button className='clear-btn' onClick={clearItems}>
+            clear items
           </button>
         </div>
-      </form>
-
-      <div
-        className={`grocery-container ${
-          groceryItems === '' ? '' : ' show-container'
-        }`}
-      >
-        <div className='grocery-list'>{diplayItems()}</div>
-        <button className='clear-btn' onClick={clearItems}>
-          clear items
-        </button>
-      </div>
-    </section>
+      </section>
+    </div>
   )
 }

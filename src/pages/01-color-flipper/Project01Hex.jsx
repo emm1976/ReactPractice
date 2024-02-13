@@ -14,7 +14,7 @@ export default function Project01Hex () {
   const [color, setColor] = React.useState(generateRandomHexColor())
 
   return (
-    <div className='collor-flipper--container' style={{ background: color }}>
+    <div className='color-flipper--container' style={{ background: color }}>
       <h2>
         background color : <span className='color'>{color}</span>
       </h2>

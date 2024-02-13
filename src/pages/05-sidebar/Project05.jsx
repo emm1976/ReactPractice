@@ -1,11 +1,19 @@
 import React from 'react'
 import logo from '../../images/logo2.svg'
 
+const socialIcons = [
+  'fa-facebook',
+  'fa-twitter',
+  'fa-behance',
+  'fa-linkedin',
+  'fa-sketch'
+]
+
 export default function Project05 () {
   const [showSidebar, setShowSidebar] = React.useState(false)
 
   return (
-    <>
+    <section className='sidebar--container'>
       <button
         className='sidebar-toggle'
         onClick={() => setShowSidebar(oldValue => !oldValue)}
@@ -36,33 +44,15 @@ export default function Project05 () {
         </ul>
 
         <ul className='social-icons'>
-          <li>
-            <a href='https://www.twitter.com'>
-              <i className='fab fa-facebook' />
-            </a>
-          </li>
-          <li>
-            <a href='https://www.twitter.com'>
-              <i className='fab fa-twitter' />
-            </a>
-          </li>
-          <li>
-            <a href='https://www.twitter.com'>
-              <i className='fab fa-behance' />
-            </a>
-          </li>
-          <li>
-            <a href='https://www.twitter.com'>
-              <i className='fab fa-linkedin' />
-            </a>
-          </li>
-          <li>
-            <a href='https://www.twitter.com'>
-              <i className='fab fa-sketch' />
-            </a>
-          </li>
+          {socialIcons.map((item, index) => (
+            <li key={index}>
+              <a href='https://www.twitter.com'>
+                <i className={'fab ' + item} />
+              </a>
+            </li>
+          ))}
         </ul>
       </aside>
-    </>
+    </section>
   )
 }

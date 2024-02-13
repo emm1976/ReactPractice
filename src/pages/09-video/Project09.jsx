@@ -31,26 +31,25 @@ export default function Project09 () {
   }
 
   return (
-    <section className='video--container'>
-      {/* <div className={'preloader' + (hidePreloader ? ' hide-preloader' : '')}>
+    <div className='root-layout--main__div'>
+      <section className='video--container'>
+        {/* <div className={'preloader' + (hidePreloader ? ' hide-preloader' : '')}>
         <img src={preloader} alt='preloader' />
       </div> */}
 
-      <header>
-        <video className='video-container' muted autoPlay loop ref={videoRef}>
-          <source src={video} type='video/mp4' />
-        </video>
-        <h1>video project</h1>
+        <header>
+          <video muted autoPlay loop ref={videoRef}>
+            <source src={video} type='video/mp4' />
+          </video>
+          <h1>video project</h1>
 
-        <button
-          className={'switch-btn' + (isVideoPaused ? ' video--slide' : '')}
-          onClick={handleClickBtn}
-        >
-          <span>play</span>
-          <span>pause</span>
-          <span className='switch'></span>
-        </button>
-      </header>
-    </section>
+          <button className='switch-btn' onClick={handleClickBtn}>
+            <span>play</span>
+            <span>pause</span>
+            <span className={'switch' + (isVideoPaused ? ' slide' : '')} />
+          </button>
+        </header>
+      </section>
+    </div>
   )
 }

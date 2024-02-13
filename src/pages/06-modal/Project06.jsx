@@ -4,7 +4,7 @@ export default function Project06 () {
   const [openModal, setOpenModal] = useState(false)
 
   return (
-    <div>
+    <section className='modal--container'>
       <header className='hero'>
         <div className='banner'>
           <h1>modal project</h1>
@@ -16,11 +16,11 @@ export default function Project06 () {
       <div className={'modal-overlay' + (openModal ? ' open-modal' : '')}>
         <div className='modal-container'>
           <h3>modal content</h3>
-          <button className='modal-overlay--close-btn' onClick={() => setOpenModal(false)}>
+          <button className='close-btn' onClick={() => setOpenModal(false)}>
             <i className='fas fa-times' />
           </button>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

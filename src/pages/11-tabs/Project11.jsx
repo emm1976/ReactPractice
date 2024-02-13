@@ -38,23 +38,25 @@ export default function Project11 () {
   })
 
   return (
-    <section>
-      <div className='tabs--title'>
-        <h2>about</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum,
-          aperiam!
-        </p>
-      </div>
-      <div className='tabs--about-center section-center'>
-        <article className='tabs--about-img'>
-          <img src={hero_bcg} alt='' />
-        </article>
-        <article className='tabs--about'>
-          <div className='tabs--btn-container'>{tabButtonElements}</div>
-          <div className='tabs--about-content'>{tabElements}</div>
-        </article>
-      </div>
-    </section>
+    <div className='root-layout--main__div'>
+      <section>
+        <div className='tabs--title'>
+          <h2>about</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum,
+            aperiam!
+          </p>
+        </div>
+        <div className='tabs--about-center section-center'>
+          <article className='tabs--about-img'>
+            <img src={hero_bcg} alt='' />
+          </article>
+          <article className='tabs--about'>
+            <div className='tabs--btn-container'>{tabButtonElements}</div>
+            <div className='tabs--about-content'>{tabElements}</div>
+          </article>
+        </div>
+      </section>
+    </div>
   )
 }

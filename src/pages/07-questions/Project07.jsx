@@ -26,11 +26,15 @@ export default function Project07 () {
   })
 
   return (
-   <section className='questions--container'>
-      <div className='title' style={{ marginBottom: '4rem' }}>
-        <h2>general questions</h2>
-      </div>
-      <div className='question-container'>{questionElements}</div>
-    </section>
+    <div className='root-layout--main__div'>
+      <section className='section-grid-center'>
+        <div className='questions--container'>
+          <div className='title'>
+            <h2>general questions</h2>
+          </div>
+          <div className='question-container'>{questionElements}</div>
+        </div>
+      </section>
+    </div>
   )
 }

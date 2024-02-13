@@ -24,9 +24,9 @@ const RootLayout = () => {
         </nav>
       </header>
       <main className='root-layout--main'>
-        <div className='root-layout--main__div'>
+        {/* <div className='root-layout--main__div'> */}
           <Outlet />
-        </div>
+        {/* </div> */}
       </main>
     </div>
   )
