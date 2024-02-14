@@ -242,12 +242,11 @@ img:not(.logo) {
 .root-layout--main__div {
   height: 100%;
   overflow-y: auto;
-  /* display: flex; */
+  display: flex;
   place-items: center;
   justify-content: center;
   align-items: center;
   border: 1px solid red;
-  /* background-color: azure; */
 }
 
 

@@ -3,11 +3,15 @@ import { NavLink } from 'react-router-dom'
 
 const NotFound: React.FC = () => {
   return (
-    <div>
-      <h2>Page not found!</h2>
-      <p>
-        Go to the <NavLink to='/'>Homepage</NavLink>.
-      </p>
+    <div className='root-layout--main__div'>
+      <section>
+        <header>
+          <h2>Page not found!</h2>
+        </header>
+        <main>
+          Go to the <NavLink to='/'>Homepage</NavLink>.
+        </main>
+      </section>
     </div>
   )
 }

@@ -3,9 +3,15 @@ import GroceryItem from './components/GroceryItem'
 
 const LS_ITEM_NAME = 'list'
 
+enum AlertType {
+  blank = '',
+  danger = 'alert-danger',
+  success = 'alert-success'
+}
+
 interface IAlert {
   text: string,
-  className: string
+  className: AlertType
 }
 
 interface IGroceryItem {
@@ -20,14 +26,14 @@ export default function Project14() {
   const [editId, setEditId] = React.useState<string>()
   const [inputValue, setInputValue] = React.useState<string | null | undefined>('')
 
-  const [alert, setAlert] = React.useState<IAlert>({ text: '', className: '' })
+  const [alert, setAlert] = React.useState<IAlert>({ text: '', className: AlertType.blank })
 
   const refGrocery = React.useRef<HTMLInputElement>(null)
 
-  function displayAlert(text: string, action: string) {
-    setAlert({ text: text, className: `alert-${action}` })
+  function displayAlert(text: string, alertType: AlertType) {
+    setAlert({ text: text, className: alertType })
     setTimeout(() => {
-      setAlert({ text: '', className: '' })
+      setAlert({ text: '', className: AlertType.blank })
     }, 2000)
   }
 
@@ -50,14 +56,14 @@ export default function Project14() {
   }
 
   function deleteItem(id: string) {
-    displayAlert('item removed', 'danger')
-    const newGroceryItems = groceryItems.filter((item: IGroceryItem) => item.id !== id)
+    displayAlert('item removed', AlertType.danger)
+    const newGroceryItems = groceryItems.filter(item => item.id !== id)
     updateGroceryItems(newGroceryItems)
     setBackToDefault()
   }
 
   function clearItems() {
-    displayAlert('empty list', 'danger')
+    displayAlert('empty list', AlertType.danger)
     updateGroceryItems([])
     setBackToDefault()
   }
@@ -80,17 +86,17 @@ export default function Project14() {
     event.preventDefault()
 
     if (inputValue === '') {
-      displayAlert('please enter value', 'danger')
+      displayAlert('please enter value', AlertType.danger)
       return
     }
 
     if (!editFlag) {
-      displayAlert('item added to the list', 'success')
+      displayAlert('item added to the list', AlertType.success)
 
       const id = new Date().getTime().toString()
       updateGroceryItems([...groceryItems, { id: id, value: inputValue }])
     } else {
-      displayAlert('value changed', 'success')
+      displayAlert('value changed', AlertType.success)
 
       const newGroceryItems = [...groceryItems].map(item => {
         if (item.id === editId) {
