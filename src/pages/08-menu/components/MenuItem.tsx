@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface IMenuItemProps {
   img: string,
   title: string,
@@ -8,6 +6,9 @@ interface IMenuItemProps {
 }
 
 export default function MenuItem({ img, title, price, desc }: IMenuItemProps) {
+
+  // console.log("MenuItem: ", { img, title, price, desc })
+
   return (
     <article className='menu-item'>
       <img src={img} alt={title} className='menu-item-photo' />

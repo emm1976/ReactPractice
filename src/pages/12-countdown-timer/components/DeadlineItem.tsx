@@ -1,5 +1,3 @@
-import React from 'react'
-
 function format(value: number) {
   if (value < 10) {
     return `0${value}`

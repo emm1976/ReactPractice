@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from "react";
 
-const Home: React.FC = () => {
+const Home: FC = () => {
   return (
     <div className='root-layout--main__div'>
       <h2>DOM Projects</h2>

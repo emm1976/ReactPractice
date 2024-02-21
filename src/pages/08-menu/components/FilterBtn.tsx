@@ -1,11 +1,12 @@
-import React from 'react'
-
 interface IFilterBtnProps {
   category: string,
   clickHandler: () => void
 }
 
 export default function FilterBtn({ category, clickHandler }: IFilterBtnProps) {
+
+  // console.log('FilterBtn: ', { category, clickHandler })
+  
   return (
     <button
       type='button'

@@ -1,33 +1,31 @@
-import React from 'react'
+import { FC } from 'react'
 import { Outlet, NavLink } from 'react-router-dom'
 
-const RootLayout: React.FC = () => {
+const RootLayout: FC = () => {
   return (
     <div className='root-layout'>
       <header className='root-layout--header'>
         <nav className='root-layout--header__nav'>
           <NavLink to='/'>Home</NavLink>
-          <NavLink to='Project01'>01</NavLink>
-          <NavLink to='Project02'>02</NavLink>
-          <NavLink to='Project03'>03</NavLink>
-          <NavLink to='Project04'>04</NavLink>
-          <NavLink to='Project05'>05</NavLink>
-          <NavLink to='Project06'>06</NavLink>
-          <NavLink to='Project07'>07</NavLink>
-          <NavLink to='Project08'>08</NavLink>
-          <NavLink to='Project09'>09</NavLink>
+          <NavLink to='colorflipper'>01</NavLink>
+          <NavLink to='counter'>02</NavLink>
+          <NavLink to='reviews'>03</NavLink>
+          <NavLink to='navbar'>04</NavLink>
+          <NavLink to='sidebar'>05</NavLink>
+          <NavLink to='modal'>06</NavLink>
+          <NavLink to='questions'>07</NavLink>
+          <NavLink to='menu'>08</NavLink>
+          <NavLink to='video'>09</NavLink>
           <NavLink to='Project10'>10</NavLink>
-          <NavLink to='Project11'>11</NavLink>
-          <NavLink to='Project12'>12</NavLink>
-          <NavLink to='Project13'>13</NavLink>
+          <NavLink to='tabs'>11</NavLink>
+          <NavLink to='timer'>12</NavLink>
+          <NavLink to='loremipsum'>13</NavLink>
           <NavLink to='Project14'>14</NavLink>
-          <NavLink to='Project15'>15</NavLink>
+          <NavLink to='slider'>15</NavLink>
         </nav>
       </header>
       <main className='root-layout--main'>
-        {/* <div className='root-layout--main__div'> */}
-          <Outlet />
-        {/* </div> */}
+        <Outlet />
       </main>
     </div>
   )

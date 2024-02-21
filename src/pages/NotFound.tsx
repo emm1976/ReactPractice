@@ -1,7 +1,7 @@
-import React from 'react'
+import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 
-const NotFound: React.FC = () => {
+const NotFound: FC = () => {
   return (
     <div className='root-layout--main__div'>
       <section>

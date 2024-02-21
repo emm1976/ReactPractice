@@ -1,11 +1,9 @@
-import React from 'react'
-
-interface ButtonCounterProps {
+interface IButtonCounterProps {
   caption: string,
   clickHandler: () => void
 }
 
-const ButtonCounter = ({ caption, clickHandler }: ButtonCounterProps) => {
+const ButtonCounter = ({ caption, clickHandler }: IButtonCounterProps) => {
   return (
     <button type='button' className='btnCounter' onClick={clickHandler}>
       {caption}

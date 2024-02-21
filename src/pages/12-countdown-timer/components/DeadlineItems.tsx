@@ -1,5 +1,4 @@
-import React from 'react'
-import { oneDay, oneHour, oneMinute } from '../constants'
+import { oneDay, oneHour, oneMinute } from 'common/constants'
 import DeadlineItem from './DeadlineItem'
 
 interface IDeadlineItemsProps {

@@ -1,17 +1,16 @@
-import React from 'react'
-
 interface ITabButtonItemProps {
+  id: number,
   title: string,
   active: boolean,
-  handleClick: () => void
+  handleClick: (id: number) => void
 }
 
-export default function TabButtonItem({ title, active, handleClick }: ITabButtonItemProps) {
+export default function TabButtonItem({ id, title, active, handleClick }: ITabButtonItemProps) {
   return (
     <button
       type='button'
-      className={'tab-btn' + (active ? ' active' : '')}
-      onClick={handleClick}
+      className={`tab-btn ${active ? 'active' : ''}`}
+      onClick={() => handleClick(id)}
     >
       {title}
     </button>

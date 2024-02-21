@@ -1,9 +1,9 @@
-import React from 'react'
+import { MouseEvent } from 'react'
 
 interface IGroceryItemProps {
   id: string,
   value: string,
-  onClickEditBtn: (event: React.MouseEvent<HTMLButtonElement>) => void,
+  onClickEditBtn: (event: MouseEvent<HTMLButtonElement>) => void,
   onClickDeleteBtn: () => void
 }
 

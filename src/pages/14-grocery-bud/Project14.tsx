@@ -1,71 +1,59 @@
-import React from 'react'
+import { useEffect, useRef, FormEvent, ChangeEvent, MouseEvent } from 'react'
+import { useSelector } from 'react-redux'
+import { appDispatch } from 'app/store'
+import { RootState } from 'app/rootReducer'
+import { AlertType } from 'app/slices/alertSlice'
+import { fetchGroceryBudItems, IGroceryItem, groceryBudActions } from 'app/slices/groceryBudSlice'
 import GroceryItem from './components/GroceryItem'
 
-const LS_ITEM_NAME = 'list'
-
-enum AlertType {
-  blank = '',
-  danger = 'alert-danger',
-  success = 'alert-success'
-}
-
-interface IAlert {
-  text: string,
-  className: AlertType
-}
-
-interface IGroceryItem {
-  id: string,
-  value: string | null | undefined
-}
-
 export default function Project14() {
-  const [groceryItems, setGroceryItems] = React.useState<IGroceryItem[]>([])
 
-  const [editFlag, setEditFlag] = React.useState<boolean>(false)
-  const [editId, setEditId] = React.useState<string>()
-  const [inputValue, setInputValue] = React.useState<string | null | undefined>('')
+  const groceryBud = useSelector((state: RootState) => state.groceryBud)
+  const groceryItems = useSelector((state: RootState) => state.groceryBud.groceryBudItems)
+  const editFlag = useSelector((state: RootState) => state.groceryBud.editFlag)
+  const inputValue = useSelector((state: RootState) => state.groceryBud.inputValue)
 
-  const [alert, setAlert] = React.useState<IAlert>({ text: '', className: AlertType.blank })
+  console.log('groceryItems: ', groceryBud)
 
-  const refGrocery = React.useRef<HTMLInputElement>(null)
+  useEffect(() => {
+    appDispatch(fetchGroceryBudItems())
+  }, [])
+
+  const alert = useSelector((state: RootState) => state.alert)
+
+
+  const refGrocery = useRef<HTMLInputElement>(null)
 
   function displayAlert(text: string, alertType: AlertType) {
-    setAlert({ text: text, className: alertType })
-    setTimeout(() => {
-      setAlert({ text: '', className: AlertType.blank })
-    }, 2000)
+    // dispatch(alertActions.show({ text, className: alertType }))
+    // setTimeout(() => {
+    //   dispatch(alertActions.hide())
+    // }, 2000)
   }
 
   function updateGroceryItems(items: IGroceryItem[]) {
-    setGroceryItems(items)
-    localStorage.setItem(LS_ITEM_NAME, JSON.stringify(items))
+    console.log('Sending data to FireBase ...')
+    // sendData(groceryItems)(dispatch)
   }
 
-  function editItem(e: React.MouseEvent<HTMLButtonElement>, id: string) {
-    setInputValue(
-      e.currentTarget.parentElement?.previousElementSibling?.innerHTML
-    )
-    setEditFlag(true)
-    setEditId(id)
-  }
+  function editItem(e: MouseEvent<HTMLButtonElement>, id: string) {
 
-  function setBackToDefault() {
-    setEditFlag(false)
-    setInputValue('')
+    const value = e.currentTarget.parentElement?.previousElementSibling?.innerHTML
+    appDispatch(groceryBudActions.saveInputValue(value ? value : ''))
+    appDispatch(groceryBudActions.startEditItem(id))
   }
 
   function deleteItem(id: string) {
     displayAlert('item removed', AlertType.danger)
-    const newGroceryItems = groceryItems.filter(item => item.id !== id)
-    updateGroceryItems(newGroceryItems)
-    setBackToDefault()
+    appDispatch(groceryBudActions.deleteItem(id))
+    appDispatch(groceryBudActions.stopEditItem())
   }
 
   function clearItems() {
     displayAlert('empty list', AlertType.danger)
+    appDispatch(groceryBudActions.deleteAllItems())
     updateGroceryItems([])
-    setBackToDefault()
+    appDispatch(groceryBudActions.stopEditItem())
   }
 
   function diplayItems() {
@@ -75,14 +63,14 @@ export default function Project14() {
           key={item.id}
           id={item.id}
           value={item.value ? item.value : ''}
-          onClickEditBtn={(e: React.MouseEvent<HTMLButtonElement>) => editItem(e, item.id)}
+          onClickEditBtn={(e: MouseEvent<HTMLButtonElement>) => editItem(e, item.id)}
           onClickDeleteBtn={() => deleteItem(item.id)}
         />
       )
     })
   }
 
-  function addItem(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
     if (inputValue === '') {
@@ -92,35 +80,19 @@ export default function Project14() {
 
     if (!editFlag) {
       displayAlert('item added to the list', AlertType.success)
-
-      const id = new Date().getTime().toString()
-      updateGroceryItems([...groceryItems, { id: id, value: inputValue }])
+      appDispatch(groceryBudActions.addItem(inputValue))
     } else {
       displayAlert('value changed', AlertType.success)
-
-      const newGroceryItems = [...groceryItems].map(item => {
-        if (item.id === editId) {
-          item.value = inputValue
-        }
-        return item
-      })
-      updateGroceryItems(newGroceryItems)
+      appDispatch(groceryBudActions.editItem())
     }
-    setBackToDefault()
+    appDispatch(groceryBudActions.stopEditItem())
   }
-
-  React.useEffect(() => {
-    const savedGroceryItems = localStorage.getItem(LS_ITEM_NAME)
-    if (savedGroceryItems) {
-      setGroceryItems(JSON.parse(savedGroceryItems))
-    }
-  }, [])
 
   return (
     <div className='root-layout--main__div'>
       <section className='grocery-bud--container'>
-        <form onSubmit={addItem}>
-          <p className={`alert ${alert.className}`}>{alert.text}</p>
+        <form onSubmit={handleSubmit}>
+          <p className={alert.className}>{alert.text}</p>
           <h3>grocery bud</h3>
 
           <div className='form-control'>
@@ -128,7 +100,7 @@ export default function Project14() {
               type='text'
               placeholder='e.g. eggs'
               value={inputValue ? inputValue : ''}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => appDispatch(groceryBudActions.saveInputValue(e.target.value))}
               ref={refGrocery}
             />
             <button type='submit' className='submit-btn'>
@@ -137,9 +109,7 @@ export default function Project14() {
           </div>
         </form>
 
-        <div
-          className={'grocery-container' + (groceryItems.length ? ' show-container' : '')}
-        >
+        <div className={`grocery-container ${groceryItems.length ? 'show-container' : ''}`} >
           <div className='grocery-list'>{diplayItems()}</div>
           <button className='clear-btn' onClick={clearItems}>
             clear items

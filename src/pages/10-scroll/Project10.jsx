@@ -1,19 +1,19 @@
-import React from 'react'
-// import './App.css'
-import Footer from './components/Footer'
-import ScrollLink from './components/ScrollLink'
+
+import { useRef, useState } from 'react'
 import logo from './logo.svg'
+import ScrollLink from './components/ScrollLink'
 import Section from './components/Section'
+import Footer from './components/Footer'
 
 export default function Project10 () {
-  const [navIsFixed, setNavIsFixed] = React.useState(false)
-  const [showTopLink, setShowTopLink] = React.useState(false)
+  const [navIsFixed, setNavIsFixed] = useState(false)
+  const [showTopLink, setShowTopLink] = useState(false)
 
-  const navbarRef = React.useRef()
-  const linksContainerRef = React.useRef()
-  const linksRef = React.useRef()
+  const navbarRef = useRef()
+  const linksContainerRef = useRef()
+  const linksRef = useRef()
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       const scrollHeight = window.scrollY
       const navHeight = navbarRef.current.getBoundingClientRect().height
