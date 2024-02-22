@@ -16,7 +16,7 @@ const RootLayout: FC = () => {
           <NavLink to='questions'>07</NavLink>
           <NavLink to='menu'>08</NavLink>
           <NavLink to='video'>09</NavLink>
-          <NavLink to='Project10'>10</NavLink>
+          <NavLink to='scroll'>10</NavLink>
           <NavLink to='tabs'>11</NavLink>
           <NavLink to='timer'>12</NavLink>
           <NavLink to='loremipsum'>13</NavLink>

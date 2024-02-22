@@ -1,6 +1,4 @@
-import React from 'react'
-
-export default function Footer (props) {
+export default function ScrollFooter () {
   return (
     <footer className='section'>
       <p>

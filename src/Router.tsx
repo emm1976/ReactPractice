@@ -20,12 +20,12 @@ import ModalPage from './pages/06-modal/ModalPage'
 import QuestionPage from './pages/07-questions/QuestionPage'
 import MenuPage from './pages/08-menu/MenuPage'
 import VideoPage from './pages/09-video/VideoPage'
-// import Project10 from './pages/10-scroll/Project10'
 import TabPage from './pages/11-tabs/TabPage'
 import TimerPage, { countdownTimerLoader } from './pages/12-countdown-timer/TimerPage'
 import LoremIpsumPage from './pages/13-lorem-ipsum/LoremIpsumPage'
 import Project14 from './pages/14-grocery-bud/Project14'
 import SliderPage from './pages/15-slider/SliderPage'
+import ScrollPage from 'pages/10-scroll/ScrollPage'
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
@@ -44,7 +44,7 @@ const Router = createBrowserRouter(
       <Route path='questions' element={<QuestionPage />} />
       <Route path='menu' element={<MenuPage />} />
       <Route path='video' element={<VideoPage />} />
-      {/* <Route path='Project10' element={<Project10 />} /> */}
+      <Route path='scroll' element={<ScrollPage />} />
       <Route path='tabs' element={<TabPage />} />
       <Route path='timer' element={<TimerPage />} loader={countdownTimerLoader} />
       <Route path='loremipsum' element={<LoremIpsumPage />} />
