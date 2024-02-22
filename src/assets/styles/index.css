@@ -369,9 +369,11 @@ img:not(.logo) {
 .counter--container .negative {
   color: red;
 }
+
 .counter--container .zero {
   color: black;
 }
+
 .counter--container .positive {
   color: blue;
 }
@@ -391,6 +393,7 @@ img:not(.logo) {
   border-radius: var(--radius);
   margin: 0.5rem;
 }
+
 .counter--container .btnCounter:hover {
   color: var(--clr-white);
   background: var(--clr-black);
@@ -1139,11 +1142,17 @@ Scroll
 ===============
 */
 
+/* Main container */
+.scroll-page {
+  height: 80vh
+}
+
 /* navbar */
 .scroll-page nav {
   background: var(--clr-white);
   padding: 1rem 1.5rem;
 }
+
 /* fixed nav */
 .scroll-page .fixed-nav {
   position: fixed;
@@ -1153,12 +1162,15 @@ Scroll
   background: var(--clr-white);
   box-shadow: var(--light-shadow);
 }
+
 .scroll-page .scroll-page .fixed-nav .links a {
   color: var(--clr-grey-1);
 }
+
 .scroll-page .fixed-nav .links a:hover {
   color: var(--clr-secondary);
 }
+
 /* .fixed-nav .links-container {
   height: auto !important;
 } */
@@ -1167,6 +1179,7 @@ Scroll
   align-items: center;
   justify-content: space-between;
 }
+
 .scroll-page .nav-toggle {
   font-size: 1.5rem;
   color: var(--clr-grey-1);
@@ -1175,20 +1188,25 @@ Scroll
   transition: var(--transition);
   cursor: pointer;
 }
+
 .scroll-page .nav-toggle:hover {
   color: var(--clr-secondary);
 }
+
 .scroll-page .logo {
   height: 50px;
 }
+
 .scroll-page .links-container {
   height: 0;
   overflow: hidden;
   transition: var(--transition);
 }
+
 .scroll-page .show-links {
   height: 200px;
 }
+
 .scroll-page .links a {
   background: var(--clr-white);
   color: var(--clr-grey-5);
@@ -1200,13 +1218,16 @@ Scroll
   font-weight: bold;
   padding: 0.75rem 0;
 }
+
 .scroll-page .links a:hover {
   color: var(--clr-grey-1);
 }
+
 @media screen and (min-width: 800px) {
   .scroll-page nav {
     background: transparent;
   }
+
   .scroll-page .nav-center {
     width: 90vw;
     max-width: 1170px;
@@ -1215,18 +1236,23 @@ Scroll
     align-items: center;
     justify-content: space-between;
   }
+
   .scroll-page .nav-header {
     padding: 0;
   }
+
   .scroll-page .nav-toggle {
     display: none;
   }
+
   .scroll-page .links-container {
     height: auto !important;
   }
+
   .scroll-page .links {
     display: flex;
   }
+
   .scroll-page .links a {
     background: transparent;
     color: var(--clr-white);
@@ -1239,57 +1265,69 @@ Scroll
     font-weight: bold;
     padding: 0;
   }
+
   .scroll-page .links a:hover {
     color: var(--clr-white);
   }
 }
+
 /* hero */
 .scroll-page header {
   min-height: 100vh;
   background: linear-gradient(rgba(63, 208, 212, 0.5), rgba(0, 0, 0, 0.7)),
     url(../images/hero-bcg.jpeg) center/cover no-repeat;
 }
+
 .scroll-page .banner {
   min-height: 100vh;
   display: grid;
   place-items: center;
   text-align: center;
 }
+
 .scroll-page .container h1 {
   color: var(--clr-white);
   text-transform: uppercase;
 }
+
 .scroll-page .container p {
   color: var(--clr-white);
   max-width: 25rem;
   margin: 0 auto;
   margin-bottom: 1.25rem;
 }
+
 @media screen and (min-width: 768px) {
   .scroll-page .container p {
     max-width: 40rem;
   }
 }
+
 /* sections and title */
 .scroll-page .title h2 {
   text-align: center;
   text-transform: uppercase;
 }
+
 .scroll-page .title span {
   color: var(--clr-secondary);
 }
+
 .scroll-page #about,
 .scroll-page #services,
 .scroll-page #tours {
   height: 80vh;
 }
+
 .scroll-page #services {
   background: var(--clr-white);
 }
+
 .scroll-page footer {
   background: var(--clr-grey-1);
   padding: 5rem 1rem;
 }
+
 .scroll-page footer p {
   color: var(--clr-white);
   text-align: center;
@@ -1314,6 +1352,7 @@ Scroll
   visibility: hidden;
   z-index: -100;
 }
+
 .scroll-page .show-link {
   visibility: visible;
   z-index: 100;
@@ -1323,12 +1362,21 @@ Scroll
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.5);
   }
+
   100% {
     transform: scale(1);
   }
+}
+
+.scroll-page .btn-white {
+  color: var(--clr-white);
+  border-color: var(--clr-white);
+  border-radius: 0;
+  padding: 0.5rem 1rem;
 }
 
 /* ============================================================================ */
@@ -1831,6 +1879,7 @@ Scroll
   color: var(--clr-grey-5);
   transition: var(--transition);
 }
+
 .slider--container button:hover {
   color: var(--clr-grey-3);
 }

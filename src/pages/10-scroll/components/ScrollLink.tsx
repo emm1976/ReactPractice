@@ -3,7 +3,7 @@ import { FC, MouseEvent, MutableRefObject } from "react"
 interface IScrollLinkProps {
   text: string,
   refObj: MutableRefObject<HTMLElement | null>,
-  handleClick: (event: MouseEvent<HTMLAnchorElement>, href: MutableRefObject<HTMLElement | null>) => void
+  handleClick: (event: MouseEvent<HTMLAnchorElement>, refObj: MutableRefObject<HTMLElement | null>) => void
 }
 
 const ScrollLink: FC<IScrollLinkProps> = ({ text, refObj, handleClick }) => {

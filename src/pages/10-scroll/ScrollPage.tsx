@@ -1,19 +1,14 @@
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import logo from '../../assets/icons/logo3.svg'
 import ScrollLink, { handleClickType } from './components/ScrollLink'
 import ScrollSection from './components/ScrollSection'
 import ScrollFooter from './components/ScrollFooter'
 
-// const sectionItems = ['home', 'about', 'services', 'tours']
-
 export default function ScrollPage() {
   const [navIsFixed, setNavIsFixed] = useState(false)
   const [showTopLink, setShowTopLink] = useState(false)
 
-  // const sectionRefs = useRef<Array<HTMLElement | null>>([])
-
-  const homeRef = useRef<HTMLElement | null>(null)
   const aboutRef = useRef<HTMLElement | null>(null)
   const servicesRef = useRef<HTMLElement | null>(null)
   const tooursRef = useRef<HTMLElement | null>(null)
@@ -21,23 +16,6 @@ export default function ScrollPage() {
   const navbarRef = useRef<HTMLElement>(null)
   const linksContainerRef = useRef<HTMLDivElement>(null)
   const linksRef = useRef<HTMLUListElement>(null)
-
-  useEffect(() => {
-
-    const handleScroll = () => {
-      if (navbarRef.current) {
-        const navHeight = navbarRef.current.getBoundingClientRect().height
-        setNavIsFixed(window.scrollY > navHeight)
-        setShowTopLink(window.scrollY > 500)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
 
   const onClickNavToggleBtn = () => {
     if (linksContainerRef.current && linksRef.current) {
@@ -49,41 +27,27 @@ export default function ScrollPage() {
         linksContainerRef.current.style.height = '0'
       }
     }
-
   }
 
-  const onClickScrollLink: handleClickType = (event, href): void => {
+  const onClickScrollLink: handleClickType = (event, refObj): void => {
     event.preventDefault()
-
-    const element = href.current
-
-    if (element && linksContainerRef.current && linksRef.current && navbarRef.current) {
-
-      const navHeight = navbarRef.current.getBoundingClientRect().height
-      const containerHeight = linksContainerRef.current.getBoundingClientRect().height
-
-      let position = element.offsetTop - navHeight
-
-      if (!navIsFixed) {
-        position = position - navHeight
-      }
-      if (navHeight > 82) {
-        position = position + containerHeight
-      }
-
-      window.scrollTo({
-        left: 0,
-        top: position
-      })
-
+    refObj.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    if (linksContainerRef.current) {
       linksContainerRef.current.style.height = '0'
     }
+  }
 
+  const handleMainScroll = (event: React.UIEvent<HTMLDivElement, UIEvent>) => {
+    if (navbarRef.current) {
+      const navHeight = navbarRef.current.getBoundingClientRect().height
+      setNavIsFixed(event.currentTarget.scrollTop > navHeight)
+      setShowTopLink(event.currentTarget.scrollTop > 500)
+    }
   }
 
   return (
-    <div className='root-layout--main__div'>
-      <div className='scroll-page' style={{ height: '80vh' }}>
+    <div className='root-layout--main__div' onScroll={handleMainScroll}>
+      <div className='scroll-page'>
         <header id='home'>
           <nav id='nav' className={navIsFixed ? 'fixed-nav' : ''} ref={navbarRef}>
             <div className='nav-center'>
