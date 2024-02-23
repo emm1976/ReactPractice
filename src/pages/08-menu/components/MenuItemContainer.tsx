@@ -1,12 +1,12 @@
 import { IMenuItem } from "Types/types"
 import List from "common/components/List"
 import { MENU_CATEGORY_ALL } from "common/constants"
-import { dataMenuItems } from "data/data"
 import MenuItem from "./MenuItem"
+import { useLoaderData } from "react-router-dom"
 
 export default function MenuItemContainer({ category }: {category: string}) {
 
-  console.log('MenuItemContainer: ', { category })
+  const dataMenuItems  = useLoaderData() as IMenuItem[]
 
   return (
     <div className='section-center'>

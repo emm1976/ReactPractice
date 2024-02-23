@@ -1,11 +1,14 @@
 import { ITabItem } from "Types/types"
 import List from "common/components/List"
-import { dataTabItems } from "data/data"
 import { useState } from "react"
 import TabButtonItem from "./TabButtonItem"
 import TabItem from "./TabItem"
+import { useLoaderData } from "react-router-dom"
+import { apiAxios } from "service/api-axios"
 
 const TabContainer = () => {
+
+    const dataTabItems = useLoaderData() as ITabItem[]
 
     const [tabs, setTabs] = useState(dataTabItems)
 
@@ -40,3 +43,13 @@ const TabContainer = () => {
 }
 
 export default TabContainer
+
+// data loader
+export const tabsLoader = () => {
+    return apiAxios
+        .get(`tabs`)
+        .then((response) => response.data as ITabItem[])
+        .catch(() => {
+            return [] as ITabItem[]
+        })
+}

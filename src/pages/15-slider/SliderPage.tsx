@@ -1,10 +1,13 @@
 import { useState } from 'react'
-import { dataSlideItems as slides } from '../../data/data'
 import SlideItem from './components/SlideItem'
 import List from 'common/components/List'
 import { ISlideItem } from 'Types/types'
+import { apiAxios } from 'service/api-axios'
+import { useLoaderData } from 'react-router-dom'
 
 export default function SliderPage() {
+
+  const slides = useLoaderData() as ISlideItem[]
 
   const [counter, setCounter] = useState(0)
 
@@ -34,4 +37,14 @@ export default function SliderPage() {
       </div>
     </section>
   )
+}
+
+// data loader
+export const slidesLoader = () => {
+  return apiAxios
+      .get(`slides`)
+      .then((response) => response.data as ISlideItem[])
+      .catch(() => {
+          return [] as ISlideItem[]
+      })
 }

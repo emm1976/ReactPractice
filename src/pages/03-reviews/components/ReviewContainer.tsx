@@ -1,9 +1,14 @@
 import { useState } from "react"
-import { dataReviewItems } from "data/data"
 import ReviewItem from "./ReviewItem"
 import { generateRandomInteger } from "common/utils"
+import { apiAxios } from "service/api-axios"
+import { IReviewItem } from "Types/types"
+import { useLoaderData } from "react-router-dom"
 
 const ReviewContainer = () => {
+
+    const dataReviewItems: IReviewItem[] = useLoaderData() as IReviewItem[]
+
     const reviewCount = dataReviewItems.length
 
     const [currentItem, setCurrentItem] = useState(0)
@@ -32,3 +37,15 @@ const ReviewContainer = () => {
 }
 
 export default ReviewContainer
+
+// data loader
+export const reviewsLoader = () => {
+    return apiAxios
+        .get(`reviews`)
+        .then((response) => {
+            return response.data as IReviewItem[]
+        })
+        .catch(() => {
+            return []
+        })
+}

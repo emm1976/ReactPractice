@@ -6,7 +6,7 @@ import { AlertType } from 'app/slices/alertSlice'
 import { fetchGroceryBudItems, IGroceryItem, groceryBudActions } from 'app/slices/groceryBudSlice'
 import GroceryItem from './components/GroceryItem'
 
-export default function Project14() {
+export default function GroceryBudPage() {
 
   const groceryBud = useSelector((state: RootState) => state.groceryBud)
   const groceryItems = useSelector((state: RootState) => state.groceryBud.groceryBudItems)
@@ -46,28 +46,14 @@ export default function Project14() {
   function deleteItem(id: string) {
     displayAlert('item removed', AlertType.danger)
     appDispatch(groceryBudActions.deleteItem(id))
-    appDispatch(groceryBudActions.stopEditItem())
+    // appDispatch(groceryBudActions.stopEditItem())
   }
 
   function clearItems() {
     displayAlert('empty list', AlertType.danger)
     appDispatch(groceryBudActions.deleteAllItems())
     updateGroceryItems([])
-    appDispatch(groceryBudActions.stopEditItem())
-  }
-
-  function diplayItems() {
-    return groceryItems.map(item => {
-      return (
-        <GroceryItem
-          key={item.id}
-          id={item.id}
-          value={item.value ? item.value : ''}
-          onClickEditBtn={(e: MouseEvent<HTMLButtonElement>) => editItem(e, item.id)}
-          onClickDeleteBtn={() => deleteItem(item.id)}
-        />
-      )
-    })
+    // appDispatch(groceryBudActions.stopEditItem())
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -85,7 +71,7 @@ export default function Project14() {
       displayAlert('value changed', AlertType.success)
       appDispatch(groceryBudActions.editItem())
     }
-    appDispatch(groceryBudActions.stopEditItem())
+    // appDispatch(groceryBudActions.stopEditItem())
   }
 
   return (
@@ -110,7 +96,19 @@ export default function Project14() {
         </form>
 
         <div className={`grocery-container ${groceryItems.length ? 'show-container' : ''}`} >
-          <div className='grocery-list'>{diplayItems()}</div>
+          <div className='grocery-list'>{
+            groceryItems.map(item => {
+              return (
+                <GroceryItem
+                  key={item.id}
+                  id={item.id}
+                  value={item.value ? item.value : ''}
+                  onClickEditBtn={(e: MouseEvent<HTMLButtonElement>) => editItem(e, item.id)}
+                  onClickDeleteBtn={() => deleteItem(item.id)}
+                />
+              )
+            })
+          }</div>
           <button className='clear-btn' onClick={clearItems}>
             clear items
           </button>

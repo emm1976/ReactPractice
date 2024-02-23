@@ -20,7 +20,7 @@ const RootLayout: FC = () => {
           <NavLink to='tabs'>11</NavLink>
           <NavLink to='timer'>12</NavLink>
           <NavLink to='loremipsum'>13</NavLink>
-          <NavLink to='Project14'>14</NavLink>
+          <NavLink to='grocerybud'>14</NavLink>
           <NavLink to='slider'>15</NavLink>
         </nav>
       </header>

@@ -99,6 +99,9 @@ const groceryBudSlice = createSlice({
                 value: action.payload
             }
             state.groceryBudItems.push(newItem)
+            state.editFlag = false
+            state.editId = ''
+            state.inputValue = ''
         },
 
         startEditItem(state, action: PayloadAction<string>) {
@@ -117,6 +120,9 @@ const groceryBudSlice = createSlice({
                 }
                 return item
             })
+            state.editFlag = false
+            state.editId = ''
+            state.inputValue = ''
         },
 
 
@@ -128,10 +134,16 @@ const groceryBudSlice = createSlice({
 
         deleteItem(state, action: PayloadAction<string>) {
             state.groceryBudItems = state.groceryBudItems.filter((item) => item.id !== action.payload)
+            state.editFlag = false
+            state.editId = ''
+            state.inputValue = ''
         },
 
         deleteAllItems(state) {
             state.groceryBudItems = []
+            state.editFlag = false
+            state.editId = ''
+            state.inputValue = ''
         },
 
     },

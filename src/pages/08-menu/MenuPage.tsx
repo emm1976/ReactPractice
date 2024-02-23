@@ -2,8 +2,11 @@ import { useState } from 'react'
 import { MENU_CATEGORY_ALL } from 'common/constants'
 import FilterBtnContainer from './components/FilterBtnContainer'
 import MenuItemContainer from './components/MenuItemContainer'
+import { apiAxios } from 'service/api-axios'
+import { IMenuItem } from 'Types/types'
 
 export default function MenuPage() {
+
   const [selectedCategory, setSelectedCategory] = useState(MENU_CATEGORY_ALL)
 
   const clickFilterButtonHandler = (category: string) => setSelectedCategory(category)
@@ -23,4 +26,14 @@ export default function MenuPage() {
       </section>
     </div>
   )
+}
+
+// data loader
+export const menuLoader = () => {
+  return apiAxios
+      .get(`menu`)
+      .then((response) => response.data as IMenuItem[])
+      .catch(() => {
+          return [] as IMenuItem[]
+      })
 }

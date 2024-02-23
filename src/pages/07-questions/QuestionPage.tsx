@@ -1,10 +1,14 @@
 import { useState } from 'react'
-import { dataQuestionItems as questions } from '../../data/data'
 import { IQuestionItem } from 'Types/types'
 import QuestionItem from './components/QuestionItem'
 import List from 'common/components/List'
+import { apiAxios } from 'service/api-axios'
+import { useLoaderData } from 'react-router-dom'
 
 export default function QuestionPage() {
+  
+  const questions  = useLoaderData() as IQuestionItem[]
+
   const [questionItems, setQuestionItems] = useState<IQuestionItem[]>(questions)
 
   const handleClick = (id: number) => {
@@ -32,4 +36,14 @@ export default function QuestionPage() {
       </section>
     </div>
   )
+}
+
+// data loader
+export const questionsLoader = () => {
+  return apiAxios
+      .get(`questions`)
+      .then((response) => response.data as IQuestionItem[])
+      .catch(() => {
+          return [] as IQuestionItem[]
+      })
 }

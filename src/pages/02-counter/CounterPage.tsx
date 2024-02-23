@@ -1,8 +1,6 @@
 import ButtonCounter from './components/ButtonCounter'
 import { useSelector } from 'react-redux'
-import { RootState } from 'app/rootReducer'
-import { counterActions } from 'app/slices/counterSlice'
-import { appDispatch } from 'app/store'
+import { RootState, appDispatch, counterActions } from 'app/index'
 
 export default function CounterPage() {
 
